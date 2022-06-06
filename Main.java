@@ -135,7 +135,7 @@ public class Main
 		}
 		if (eingabe == 2)
 		{
-			lauf();
+			sprint();
 		}
 		if (eingabe == 3)
 		{
@@ -145,7 +145,33 @@ public class Main
 	
 	public static void ErgebnisseAnzeigen()
 	{
-		
+		System.out.println("Welche Disziplin soll nun sortiert werden?");
+        System.out.println("");
+        System.out.println("1. Weitsprung");
+        System.out.println("2. Sprint");
+        System.out.println("3. Weitwurf");
+        System.out.println("");
+        Scanner mS = new Scanner(System.in);
+        int eingabe = mS.nextInt();
+        
+        if(eingabe == 1)
+        {
+            sortiereSprung(); //Insertionsort
+        }
+        
+        else if(eingabe == 2)
+        {
+            sortiereSprint(); // Bubblesort
+        }
+        
+        else if(eingabe == 3)
+        {
+            sortiereWurf(); // Selectionsort
+        }
+        else
+        {
+            
+        }
 	}
 	
 	public static void weitsprung()
@@ -172,13 +198,90 @@ public class Main
 	 	System.out.println();
 	  } 
 	
-	public static void lauf()
+	public static void sprint()
 	{
+		Scanner mS = new Scanner(System.in);
+		System.out.println("Die folgenden Schueler sind nun beim Sprint");
+		System.out.println();
+		meineList.toFirst();
 		
+	 	while(meineList.hasAccess())
+	 	{
+	 		Schueler aS = meineList.getContent();
+	 		System.out.println(aS.getVorname()+" "+aS.getNachname());
+	          
+	 		System.out.println();
+	 		System.out.println("Welche Zeit wurde erreicht?");
+	 		System.out.println();
+	 		double zeit = mS.nextDouble();
+	 		aS.setSprung(zeit);
+	 		System.out.println();
+	          
+	 		meineList.next();
+	 	}
+	 	System.out.println();
 	}
 	
 	public static void wurf()
 	{
+		Scanner mS = new Scanner(System.in);
+		System.out.println("Die folgenden Schueler sind nun beim Wurf");
+		System.out.println();
+		meineList.toFirst();
 		
-	}
+	 	while(meineList.hasAccess())
+	 	{
+	 		Schueler aS = meineList.getContent();
+	 		System.out.println(aS.getVorname()+" "+aS.getNachname());
+	          
+	 		System.out.println();
+	 		System.out.println("Welche Weite wurde erreicht?");
+	 		System.out.println();
+	 		double weite = mS.nextDouble();
+	 		aS.setSprung(weite);
+	 		System.out.println();
+	          
+	 		meineList.next();
+	 	}
+	 	System.out.println();
+	} 
+	
+	public static void sortiereSprung()
+    {
+		List<Schueler> sotierteList = new List<Schueler>();
+		meineList.toFirst();
+		
+		while(!meineList.isEmpty())
+		{
+	 		Schueler aS = meineList.getContent();
+	 		sotierteList.toFirst();
+	 		while(sotierteList.hasAccess() && aS.getSprung( ) > sotierteList.getContent().getSprung())
+	 		{
+	 			sotierteList.next();
+	 		}
+	 		sotierteList.insert(aS);
+	 		meineList.remove();
+		}
+		
+		//sotierteList.toFirst();
+		
+		meineList = sotierteList;
+		//while(!sotierteList.isEmpty())
+		//{
+		//	meineList.append(sotierteList.getContent());
+		//	sotierteList.remove();
+		//}
+		
+    } 
+    
+    public static void sortiereSprint()
+    {
+    	
+    }
+    
+    public static void sortiereWurf()
+    {
+    	
+    }
+
 }
