@@ -238,7 +238,7 @@ public class Main
 	 		System.out.println("Welche Weite wurde erreicht?");
 	 		System.out.println();
 	 		double weite = mS.nextDouble();
-	 		aS.setSprung(weite);
+	 		aS.setWurf(weite);
 	 		System.out.println();
 	          
 	 		meineList.next();
@@ -281,7 +281,43 @@ public class Main
     
     public static void sortiereWurf()
     {
+    	boolean wurdeGetauscht = true;
+    	int j = 1;
     	
+    	while (wurdeGetauscht == true)
+    	{
+    		wurdeGetauscht = false;
+    		meineList.toFirst();
+    		
+    		//geht die ganze Liste durch
+    		//bis der aktuelle Schueler leer ist
+    		while (meineList.hasAccess())
+    		{
+    			Schueler erste = meineList.getContent();
+    			meineList.remove();
+    			Schueler zweite = meineList.getContent();
+    			
+    			//stellt die beiden Werte richtig in die Liste
+    			
+	    		if (meineList.hasAccess() && erste.getWurf() > zweite.getWurf())
+	    		{
+	    			meineList.append(erste);
+	    			wurdeGetauscht = true;
+	    		}
+	    		else
+	    		{
+	    			meineList.insert(erste);
+	    		}
+    			
+    			//wählt die nächsten Werte
+    			//meineList.toFirst();
+    			//for (int i = 0; i < j; i++) 
+    			//{
+    			//	  meineList.next();
+    			//}
+    			//j++;
+    		}
+    	}
     }
 
 }
